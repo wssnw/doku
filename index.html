@@ -3,42 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doku: Foggy Fights</title>
+    <title>Foggy Fights | Dokumentation</title>
     <style>
-        body { background: #0d1117; color: #c9d1d9; font-family: sans-serif; line-height: 1.6; padding: 20px; }
-        .card { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 15px; margin-bottom: 20px; }
-        h1 { color: #58a6ff; text-align: center; }
-        h2 { color: #79c0ff; border-bottom: 1px solid #30363d; }
-        code { background: #000; color: #d2a8ff; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
-        .btn { display: block; background: #238636; color: white; text-align: center; padding: 10px; text-decoration: none; border-radius: 6px; font-weight: bold; margin-top: 20px; }
+        /* Grund-Setup */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow-x: hidden;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background: #0d1117;
+            color: #c9d1d9;
+        }
+
+        /* INTRO SCREEN */
+        #intro-screen {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            /* HIER WIRD DEIN BILD GELADEN */
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('IMG_4340.jpeg') no-repeat center center;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: transform 1s cubic-bezier(0.85, 0, 0.15, 1), opacity 1s ease;
+        }
+
+        /* Der Text: Dokumentation (Kursiv & Glühend) */
+        #intro-screen h1 {
+            font-family: 'Georgia', serif; /* Wirkt edel kursiv */
+            font-style: italic;
+            font-size: 3.5rem;
+            color: white;
+            text-align: center;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 10px rgba(255,255,255,0.8), 0 0 20px #58a6ff, 0 0 30px #58a6ff;
+            animation: floatGlow 3s ease-in-out infinite;
+        }
+
+        /* Der Button */
+        #enter-btn {
+            padding: 15px 35px;
+            font-size: 1.1rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid #58a6ff;
+            border-radius: 50px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 0 15px rgba(88, 166, 255, 0.3);
+        }
+
+        #enter-btn:hover {
+            background: #58a6ff;
+            box-shadow: 0 0 30px #58a6ff;
+            transform: scale(1.1);
+        }
+
+        /* HAUPT-DOKUMENTATION (Zuerst unsichtbar) */
+        #main-content {
+            opacity: 0;
+            padding: 50px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            transform: translateY(20px);
+            transition: all 1s ease;
+        }
+
+        .card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        h2 { color: #58a6ff; border-bottom: 1px solid #30363d; padding-bottom: 10px; }
+
+        /* Animationen */
+        @keyframes floatGlow {
+            0%, 100% { transform: translateY(0); text-shadow: 0 0 10px #fff, 0 0 20px #58a6ff; }
+            50% { transform: translateY(-15px); text-shadow: 0 0 20px #fff, 0 0 40px #58a6ff; }
+        }
+
+        /* Klasse zum Ausblenden */
+        .hidden-intro {
+            transform: translateY(-100%) !important;
+            opacity: 0;
+        }
+
+        .show-content {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
     </style>
 </head>
 <body>
 
-    <h1>Herstellungsprozess</h1>
-    <p style="text-align: center;">Dokumentation meines Projekts "Foggy Fights"</p>
-
-    <div class="card">
-        <h2>1. Die Planung</h2>
-        <p>Ich wollte eine Website für ein Game erstellen. Mein Ziel war ein düsteres Design (Dark Mode). Zuerst habe ich das Layout auf Papier skizziert.</p>
+    <div id="intro-screen">
+        <h1>Dokumentation</h1>
+        <button id="enter-btn">Meine Dokumentation</button>
     </div>
 
-    <div class="card">
-        <h2>2. Programmierung (HTML)</h2>
-        <p>Ich habe das Skelett der Seite mit <code>HTML5</code> gebaut. Dabei habe ich Header, Main und Footer Bereiche genutzt.</p>
+    <div id="main-content">
+        <h1 style="text-align: center; color: #58a6ff;">Projekt: Foggy Fights</h1>
+        
+        <div class="card">
+            <h2>Konzept</h2>
+            <p>Die Website dient als atmosphärisches Portal für das Projekt "Foggy Fights". Fokus lag auf einem immersiven User-Interface und modernem Dark-Mode Design.</p>
+        </div>
+
+        <div class="card">
+            <h2>Herstellung</h2>
+            <p>Verwendet wurden <b>HTML5</b> für die Struktur, <b>CSS3</b> für die Animationen (Keyframes) und <b>JavaScript</b> für die interaktive Steuerung des Intros.</p>
+        </div>
+
+        <div class="card" style="text-align: center;">
+            <h2>Live Link</h2>
+            <p>Hier geht es zur Hauptseite:</p>
+            <a href="#" style="color: #58a6ff; text-decoration: none; font-weight: bold;">[Dein Spiel Link hier einfügen]</a>
+        </div>
     </div>
 
-    <div class="card">
-        <h2>3. Design (CSS)</h2>
-        <p>Mit <code>CSS3</code> habe ich die Farben angepasst. Wichtig war das <b>Responsive Design</b>, damit die Seite auf dem Smartphone funktioniert.</p>
-    </div>
-
-    <div class="card">
-        <h2>4. Hosting</h2>
-        <p>Die Seite wurde via GitHub Pages veröffentlicht. Das ermöglicht eine weltweite Erreichbarkeit über einen QR-Code.</p>
-    </div>
-
-    <a href="HIER-LINK-ZU-DEINEM-SPIEL" class="btn">ZUM HAUPTPROJEKT</a>
-
+    <script>
+        document.getElementById('enter-btn').addEventListener('click', function() {
+            // Intro nach oben wegschieben
+            document.getElementById('intro-screen').classList.add('hidden-intro');
+            
+            // Content einblenden
+            setTimeout(() => {
+                document.getElementById('main-content').classList.add('show-content');
+                document.body.style.overflow = 'auto';
+            }, 500);
+        });
+    </script>
 </body>
 </html>
