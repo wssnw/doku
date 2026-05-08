@@ -2,106 +2,115 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Foggy Fights | Doku</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foggy Fights | Dokumentation</title>
     <style>
-        /* Grund-Setup für Mobile */
         * { box-sizing: border-box; }
         
         body, html {
             margin: 0;
             padding: 0;
-            width: 100%;
             height: 100%;
-            overflow-x: hidden; /* Verhindert das seitliche Wackeln */
+            width: 100%;
             background: #0d1117;
             color: #c9d1d9;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
         }
 
-        /* INTRO SCREEN - Optimiert für iPhone */
+        /* INTRO SCREEN - Funktioniert für PC & Mobile */
         #intro-screen {
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            /* Hintergrund-Optimierung */
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
                         url('IMG_4340.jpeg') no-repeat center center;
-            background-size: cover;
+            background-size: cover; /* Füllt den Bildschirm ohne Verzerrung */
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             z-index: 1000;
-            padding: 20px; /* Puffer zu den Rändern */
-            transition: transform 0.8s cubic-bezier(0.85, 0, 0.15, 1);
+            transition: transform 0.8s cubic-bezier(0.85, 0, 0.15, 1), opacity 0.6s ease;
         }
 
-        /* Glühender Text - Passt sich der Bildschirmbreite an */
+        /* Glühender Titel - Skaliert auf PCs und Handys */
         #intro-screen h1 {
             font-family: 'Georgia', serif;
             font-style: italic;
-            font-size: clamp(2rem, 10vw, 3.5rem); /* Minimum 2rem, passt sich an bis 3.5rem */
+            font-size: clamp(2.5rem, 8vw, 4.5rem); /* Responsive Schriftgröße */
             color: white;
             text-align: center;
-            margin-bottom: 2rem;
-            width: 100%;
-            text-shadow: 0 0 10px rgba(255,255,255,0.8), 0 0 20px #58a6ff;
+            margin: 0 20px 40px 20px;
+            text-shadow: 0 0 15px rgba(255,255,255,0.7), 0 0 30px #58a6ff;
             animation: floatGlow 3s ease-in-out infinite;
+            letter-spacing: 2px;
         }
 
-        /* Button - Jetzt besser klickbar auf Touchscreens */
+        /* Button - Schick auf allen Ratios */
         #enter-btn {
-            padding: 18px 30px;
-            font-size: 1rem;
-            background: rgba(88, 166, 255, 0.2);
+            padding: clamp(12px, 2vw, 18px) clamp(30px, 5vw, 50px);
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            background: rgba(255, 255, 255, 0.1);
             color: white;
             border: 2px solid #58a6ff;
             border-radius: 50px;
             cursor: pointer;
             backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px); /* Für Safari/iPhone */
+            -webkit-backdrop-filter: blur(8px);
             transition: all 0.3s ease;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 0 15px rgba(88, 166, 255, 0.3);
-            -webkit-tap-highlight-color: transparent; /* Verhindert grauen Kasten beim Tippen */
+            font-weight: bold;
+            box-shadow: 0 0 20px rgba(88, 166, 255, 0.4);
         }
 
-        #enter-btn:active {
-            transform: scale(0.95);
+        #enter-btn:hover {
             background: #58a6ff;
+            box-shadow: 0 0 40px #58a6ff;
+            transform: scale(1.05);
         }
 
-        /* DOKU CONTENT - Schmaler für Hochformat */
+        /* MAIN CONTENT - Zentriert auf PC */
         #main-content {
-            display: none; /* Erst nach Klick da */
+            display: none;
             opacity: 0;
-            padding: 30px 15px;
-            width: 100%;
-            max-width: 600px;
+            padding: 60px 20px;
+            max-width: 900px;
             margin: 0 auto;
-            transition: opacity 0.8s ease;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
         }
 
         .card {
             background: #161b22;
             border: 1px solid #30363d;
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 20px;
-            width: 100%;
+            border-radius: 16px;
+            padding: clamp(20px, 4vw, 35px);
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        h2 { font-size: 1.4rem; color: #58a6ff; margin-top: 0; }
-        p { font-size: 1rem; line-height: 1.5; }
+        h2 { color: #58a6ff; font-size: 1.8rem; margin-top: 0; }
+        p { line-height: 1.8; font-size: 1.1rem; color: #8b949e; }
 
         @keyframes floatGlow {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            0%, 100% { transform: translateY(0); text-shadow: 0 0 15px #fff, 0 0 30px #58a6ff; }
+            50% { transform: translateY(-20px); text-shadow: 0 0 25px #fff, 0 0 50px #58a6ff; }
         }
 
+        /* Animation Klassen */
         .hidden-intro {
             transform: translateY(-100%) !important;
+            opacity: 0;
+        }
+
+        .show-content {
+            display: block !important;
+            opacity: 1 !important;
+            transform: translateY(0) !important;
         }
     </style>
 </head>
@@ -113,35 +122,41 @@
     </div>
 
     <div id="main-content">
-        <h1 style="text-align: center; color: #58a6ff; font-size: 1.8rem;">Foggy Fights</h1>
+        <h1 style="text-align: center; color: #58a6ff; font-size: 2.5rem; margin-bottom: 50px;">
+            Herstellungsprozess: Foggy Fights
+        </h1>
         
         <div class="card">
-            <h2>Konzept</h2>
-            <p>Design eines düsteren Gaming-Portals für das Projekt "Foggy Fights". Fokus: Atmosphäre und Mobile-Experience.</p>
+            <h2>Die Vision</h2>
+            <p>Ziel war es, eine düstere, atmosphärische Web-Umgebung zu schaffen, die den User sofort in die Welt von "Foggy Fights" zieht. Das Design nutzt gezielte Lichteffekte (Glow) auf dunklem Grund.</p>
         </div>
 
         <div class="card">
-            <h2>Technik</h2>
-            <p>Responsive Design mit <b>HTML5</b>, <b>CSS Flexbox</b> und <b>JavaScript</b> für die Interaktion.</p>
+            <h2>Technische Umsetzung</h2>
+            <p>Die Seite basiert auf einem <b>Mobile-First</b> Ansatz, funktioniert aber dank <b>CSS Flexbox</b> und <b>Clamp-Funktionen</b> auch perfekt auf Ultra-Wide Monitoren. Das Bild im Hintergrund wird dynamisch skaliert.</p>
         </div>
 
         <div class="card" style="text-align: center;">
-            <a href="#" style="color: #58a6ff; text-decoration: none; font-weight: bold; font-size: 1.1rem;">ZUM SPIEL →</a>
+            <h2>Live Projekt</h2>
+            <p>Hier geht es zur fertigen Webseite:</p>
+            <a href="#" style="display: inline-block; margin-top: 10px; color: #58a6ff; text-decoration: none; font-weight: bold; border: 1px solid #58a6ff; padding: 10px 20px; border-radius: 8px;">
+                PROJEKT STARTEN
+            </a>
         </div>
     </div>
 
     <script>
         document.getElementById('enter-btn').addEventListener('click', function() {
             const intro = document.getElementById('intro-screen');
-            const main = document.getElementById('main-content');
+            const content = document.getElementById('main-content');
             
             intro.classList.add('hidden-intro');
-            main.style.display = 'block';
             
             setTimeout(() => {
-                main.style.opacity = '1';
-                document.body.style.overflowY = 'auto';
-            }, 100);
+                content.classList.add('show-content');
+                document.body.style.overflow = 'auto';
+                window.scrollTo(0, 0);
+            }, 600);
         });
     </script>
 </body>
