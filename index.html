@@ -8,15 +8,14 @@
         * { box-sizing: border-box; }
         body, html {
             margin: 0; padding: 0; height: 100%; width: 100%;
-            /* Golden Hour Background */
-            background: linear-gradient(135deg, #2c3e50, #fd8112, #045de9);
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
             background-attachment: fixed;
             color: #fff;
             font-family: 'Segoe UI', sans-serif;
             overflow-x: hidden;
         }
 
-        /* INTRO MIT DEINEM BILD */
+        /* INTRO SCREEN */
         #intro-screen {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('IMG_4340.jpeg') no-repeat center center;
@@ -26,11 +25,10 @@
         }
 
         #intro-screen h1 {
-            /* Geschwungene Schrift für das Logo */
             font-family: 'Brush Script MT', 'cursive';
             font-size: clamp(3rem, 12vw, 6rem);
             color: #fff;
-            text-shadow: 0 0 20px #f1e05a, 0 0 40px #fd8112;
+            text-shadow: 0 0 20px #fdbb2d;
             animation: floatGlow 3s ease-in-out infinite;
         }
 
@@ -41,7 +39,7 @@
             backdrop-filter: blur(10px); transition: 0.3s;
         }
 
-        #enter-btn:hover { background: #f1e05a; color: #000; border-color: #f1e05a; box-shadow: 0 0 30px #f1e05a; }
+        #enter-btn:hover { background: #fdbb2d; color: #000; border-color: #fdbb2d; box-shadow: 0 0 30px #fdbb2d; }
 
         /* CONTENT */
         #main-content {
@@ -57,14 +55,27 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
-        h2 { color: #f1e05a; font-size: 1.8rem; margin-top: 0; }
+        h2 { color: #fdbb2d; font-size: 1.8rem; margin-top: 0; }
         p { line-height: 1.8; font-size: 1.1rem; }
-        .highlight { color: #f1e05a; font-weight: bold; }
+        
+        .img-container {
+            width: 100%;
+            margin: 20px 0;
+            text-align: center;
+        }
 
-        /* Animationen */
+        .img-container img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .highlight { color: #fdbb2d; font-weight: bold; }
+
         @keyframes floatGlow {
-            0%, 100% { transform: translateY(0) rotate(-2deg); text-shadow: 0 0 20px #f1e05a; }
-            50% { transform: translateY(-15px) rotate(2deg); text-shadow: 0 0 40px #fd8112; }
+            0%, 100% { transform: translateY(0) rotate(-1deg); }
+            50% { transform: translateY(-15px) rotate(1deg); }
         }
 
         .hidden-intro { transform: translateY(-100%); opacity: 0; }
@@ -81,34 +92,45 @@
     <div id="main-content">
         <h1 style="text-align: center; font-size: 2.5rem; margin-bottom: 50px;">Mein Herstellungsprozess</h1>
 
-        <!-- SCHRITT 1: LOGOS UND IDEEN -->
+        <!-- LOGOS UND IDEEN -->
         <div class="story-card">
             <h2>Logos und Ideen</h2>
-            <p>Zuerst habe ich mir die Farben überlegt und mich für <span class="highlight">Golden Hour Farben</span> entschieden. Danach kam mir die Idee, dass eine <span class="highlight">geschwungene Schreibschrift (Cursive)</span> für das Logo viel besser aussehen würde als eine normale Schrift. Ich habe das meinen Kollegen erzählt und sie fanden die Idee sofort super.</p>
+            <p>Zuerst habe ich mir die Farben überlegt und mich für <span class="highlight">Golden Hour Farben</span> entschieden. Danach kam mir die Idee, dass eine geschwungene Schreibschrift (Cursive) für das Logo viel besser aussehen würde. Hier ist der erste Logo-Entwurf:</p>
+            <div class="img-container">
+                <img src="hey.png" alt="Logo Konzept">
+            </div>
         </div>
 
-        <!-- SCHRITT 2: GITHUB & SCRIPTING -->
+        <!-- SCRIPTING -->
         <div class="story-card">
-            <h2>GitHub & Scripting</h2>
-            <p>Danach bin ich auf GitHub gegangen und habe mit dem Scripting angefangen. Am Anfang habe ich das Logo geschafft, aber die Webseite sah immer noch sehr leer aus. Ich merkte, dass das Fundament zwar stand, aber der "Wow-Effekt" fehlte noch komplett.</p>
+            <h2>Scripting & Aufbau</h2>
+            <p>Danach bin ich auf GitHub gegangen und habe mit dem Scripting angefangen. Es war am Anfang mühsam, die Struktur richtig hinzubekommen, damit alles flüssig läuft:</p>
+            <div class="img-container">
+                <img src="hey1.png" alt="Scripting Phase">
+            </div>
         </div>
 
-        <!-- SCHRITT 3: ANIMATIONEN & SUNRAYS -->
+        <!-- ANIMATIONEN UND SUNRAYS -->
         <div class="story-card">
-            <h2>Animationen & Sunrays</h2>
-            <p>Als ich das Logo gemacht und die ersten Animationen hinzugefügt hatte, zeigten mir meine Kollegen, dass sie noch zu schnell und nicht wirklich schön waren. Ich habe viele verschiedene Animationen ausprobiert, bis ich eine neue Idee hatte: <span class="highlight">Sunrays (Sonnenstrahlen)</span>.</p>
-            <p>Diese Sonnenstrahlen waren eigentlich megagut! Ich habe sie hinzugefügt und kurz darauf das Hintergrundbild eingebaut. Plötzlich sah die Webseite nicht mehr leer aus, sondern richtig lebendig.</p>
+            <h2>Animationen und Sunrays</h2>
+            <p>Die ersten Animationen waren zu schnell. Erst mit der Idee der <span class="highlight">Sunrays</span> und der Anpassung der Bewegungen wurde das Design stimmig:</p>
+            <div class="img-container">
+                <img src="Move.jpg" alt="Animationen und Sunrays">
+            </div>
         </div>
 
-        <!-- SCHRITT 4: FEINSCHLIFF & EFFEKTE -->
+        <!-- RESULTAT -->
         <div class="story-card">
-            <h2>Feinschliff & Effekte</h2>
-            <p>Zum Schluss kamen die Details. Ich habe <span class="highlight">Glaseffekte</span> über die Texte gelegt, damit es modern aussieht. Die Übergänge habe ich so angepasst, dass sie sanft ineinander fließen. Statt einer dunklen Nacht-Optik wollte ich diesen warmen Glanz beibehalten, der perfekt zu meinem Spiel und dem gewählten Foto passt.</p>
-        </div>
-
-        <div class="story-card" style="text-align: center; border: 2px solid #f1e05a;">
             <h2>Das Resultat</h2>
-            <p>Am Ende stand eine Seite, die genau das Gefühl vermittelt, das ich mir am Anfang vorgestellt hatte. Von der ersten Skizze bis zum fertigen Code auf GitHub war es ein langer Weg, aber der Aufwand hat sich gelohnt.</p>
+            <p>Nach viel Arbeit und Korrekturen ist die finale Version fertig. Hier ist ein Einblick in das Endresultat:</p>
+            <div class="img-container">
+                <img src="Bad.png" alt="Finales Design 1" style="margin-bottom: 15px;">
+                <img src="IMG_4358.jpg" alt="Finales Design 2">
+            </div>
+        </div>
+
+        <div style="text-align: center; padding-bottom: 40px;">
+            <p>© 2026 | Projekt Foggy Fights</p>
         </div>
     </div>
 
@@ -118,7 +140,6 @@
             setTimeout(() => {
                 document.getElementById('main-content').classList.add('show-content');
                 document.body.style.overflow = 'auto';
-                window.scrollTo(0,0);
             }, 600);
         });
     </script>
