@@ -3,67 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Process | Foggy Fights</title>
+    <title>Herstellungsprozess | Foggy Fights</title>
     <style>
         * { box-sizing: border-box; }
         body, html {
-            margin: 0; padding: 0; background: #05070a; color: #c9d1d9;
-            font-family: 'Segoe UI', system-ui, sans-serif; overflow-x: hidden;
+            margin: 0; padding: 0; height: 100%; width: 100%;
+            /* Golden Hour Background */
+            background: linear-gradient(135deg, #2c3e50, #fd8112, #045de9);
+            background-attachment: fixed;
+            color: #fff;
+            font-family: 'Segoe UI', sans-serif;
+            overflow-x: hidden;
         }
 
         /* INTRO MIT DEINEM BILD */
         #intro-screen {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('IMG_4340.jpeg') no-repeat center center;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('IMG_4340.jpeg') no-repeat center center;
             background-size: cover; display: flex; flex-direction: column;
             justify-content: center; align-items: center; z-index: 1000;
             transition: 0.8s cubic-bezier(0.85, 0, 0.15, 1);
         }
 
         #intro-screen h1 {
-            font-family: 'Georgia', serif; font-style: italic;
-            font-size: clamp(2.5rem, 10vw, 5rem); color: #fff;
-            text-shadow: 0 0 20px #58a6ff; animation: float 3s ease-in-out infinite;
+            /* Geschwungene Schrift für das Logo */
+            font-family: 'Brush Script MT', 'cursive';
+            font-size: clamp(3rem, 12vw, 6rem);
+            color: #fff;
+            text-shadow: 0 0 20px #f1e05a, 0 0 40px #fd8112;
+            animation: floatGlow 3s ease-in-out infinite;
         }
 
         #enter-btn {
-            padding: 15px 40px; background: rgba(88, 166, 255, 0.1);
-            color: #58a6ff; border: 2px solid #58a6ff; border-radius: 50px;
+            padding: 15px 40px; background: rgba(255, 255, 255, 0.2);
+            color: #fff; border: 2px solid #fff; border-radius: 50px;
             cursor: pointer; font-weight: bold; text-transform: uppercase;
-            letter-spacing: 2px; transition: 0.3s;
+            backdrop-filter: blur(10px); transition: 0.3s;
         }
 
-        #enter-btn:hover { background: #58a6ff; color: #fff; box-shadow: 0 0 30px #58a6ff; }
+        #enter-btn:hover { background: #f1e05a; color: #000; border-color: #f1e05a; box-shadow: 0 0 30px #f1e05a; }
 
-        /* TIMELINE LAYOUT */
+        /* CONTENT */
         #main-content {
-            display: none; opacity: 0; max-width: 800px; margin: 0 auto;
+            display: none; opacity: 0; max-width: 850px; margin: 0 auto;
             padding: 60px 20px; transition: 1s;
         }
 
-        .milestone {
-            position: relative; padding-left: 40px; margin-bottom: 50px;
-            border-left: 2px solid #30363d;
+        .story-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 30px; border-radius: 20px; margin-bottom: 40px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
-        .milestone::before {
-            content: ''; position: absolute; left: -9px; top: 0;
-            width: 16px; height: 16px; background: #58a6ff;
-            border-radius: 50%; box-shadow: 0 0 10px #58a6ff;
-        }
+        h2 { color: #f1e05a; font-size: 1.8rem; margin-top: 0; }
+        p { line-height: 1.8; font-size: 1.1rem; }
+        .highlight { color: #f1e05a; font-weight: bold; }
 
-        .glass-box {
-            background: rgba(22, 27, 34, 0.8); border: 1px solid #30363d;
-            padding: 25px; border-radius: 15px; backdrop-filter: blur(10px);
-        }
-
-        h2 { color: #58a6ff; margin-top: 0; font-size: 1.5rem; }
-        .highlight { color: #f1e05a; font-weight: bold; } /* Gelb für Fokus-Punkte */
-        .error-tag { color: #ff7b72; font-family: monospace; font-size: 0.9rem; } /* Rot für Fehler */
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
+        /* Animationen */
+        @keyframes floatGlow {
+            0%, 100% { transform: translateY(0) rotate(-2deg); text-shadow: 0 0 20px #f1e05a; }
+            50% { transform: translateY(-15px) rotate(2deg); text-shadow: 0 0 40px #fd8112; }
         }
 
         .hidden-intro { transform: translateY(-100%); opacity: 0; }
@@ -73,54 +74,42 @@
 <body>
 
     <div id="intro-screen">
-        <h1>Herstellung</h1>
-        <button id="enter-btn">Prozess ansehen</button>
+        <h1>Dokumentation</h1>
+        <button id="enter-btn">Story starten</button>
     </div>
 
     <div id="main-content">
-        <h1 style="text-align: center; margin-bottom: 60px;">Wie alles entstand</h1>
+        <h1 style="text-align: center; font-size: 2.5rem; margin-bottom: 50px;">Mein Herstellungsprozess</h1>
 
-        <!-- SCHRITT 1 -->
-        <div class="milestone">
-            <div class="glass-box">
-                <h2>Die Vision & Farbwahl</h2>
-                <p>Alles begann mit meinem Spiel. Ich wollte den Vibe einfangen: <span class="highlight">Hellblau, Pink und Violett</span>. Ich wusste sofort: Wenn das Design nicht "catchy" ist, gehen die Leute weg. Mein Ziel war ein Design, das klar ist, aber trotzdem flasht.</p>
-            </div>
+        <!-- SCHRITT 1: LOGOS UND IDEEN -->
+        <div class="story-card">
+            <h2>Logos und Ideen</h2>
+            <p>Zuerst habe ich mir die Farben überlegt und mich für <span class="highlight">Golden Hour Farben</span> entschieden. Danach kam mir die Idee, dass eine <span class="highlight">geschwungene Schreibschrift (Cursive)</span> für das Logo viel besser aussehen würde als eine normale Schrift. Ich habe das meinen Kollegen erzählt und sie fanden die Idee sofort super.</p>
         </div>
 
-        <!-- SCHRITT 2 -->
-        <div class="milestone">
-            <div class="glass-box">
-                <h2>Erste Schritte auf GitHub</h2>
-                <p>Ich bin auf GitHub gegangen und hab das Projekt gestartet. Mein erster Plan: <span class="highlight">Das Logo</span>. Aber am Anfang war alles leer. Ich merkte schnell: Ein statisches Logo reicht nicht. Es braucht Animationen und Leben. Um die Leere zu füllen, hab ich das "Blaue Stunde" Hintergrundbild mit den Palmen gewählt – der perfekte Vibe.</p>
-            </div>
+        <!-- SCHRITT 2: GITHUB & SCRIPTING -->
+        <div class="story-card">
+            <h2>GitHub & Scripting</h2>
+            <p>Danach bin ich auf GitHub gegangen und habe mit dem Scripting angefangen. Am Anfang habe ich das Logo geschafft, aber die Webseite sah immer noch sehr leer aus. Ich merkte, dass das Fundament zwar stand, aber der "Wow-Effekt" fehlte noch komplett.</p>
         </div>
 
-        <!-- SCHRITT 3 -->
-        <div class="milestone">
-            <div class="glass-box">
-                <h2>Der Kampf gegen den Code</h2>
-                <p class="error-tag">// Status: 50+ Versuche / Code Errors</p>
-                <p>Hier wurde es hart. Mein Kollege Tom gab mir Feedback: "Animationen sind noch zu schwach." Also hab ich versucht, das Logo beweglich zu machen. Ich hab es sicher <span class="highlight">über 50-mal bearbeitet</span>. Oft war die Seite komplett down, weil ich Fehler im Skript hatte. Es war frustrierend, aber ich hab nicht aufgehört.</p>
-            </div>
+        <!-- SCHRITT 3: ANIMATIONEN & SUNRAYS -->
+        <div class="story-card">
+            <h2>Animationen & Sunrays</h2>
+            <p>Als ich das Logo gemacht und die ersten Animationen hinzugefügt hatte, zeigten mir meine Kollegen, dass sie noch zu schnell und nicht wirklich schön waren. Ich habe viele verschiedene Animationen ausprobiert, bis ich eine neue Idee hatte: <span class="highlight">Sunrays (Sonnenstrahlen)</span>.</p>
+            <p>Diese Sonnenstrahlen waren eigentlich megagut! Ich habe sie hinzugefügt und kurz darauf das Hintergrundbild eingebaut. Plötzlich sah die Webseite nicht mehr leer aus, sondern richtig lebendig.</p>
         </div>
 
-        <!-- SCHRITT 4 -->
-        <div class="milestone">
-            <div class="glass-box">
-                <h2>Feinschliff & Effekte</h2>
-                <p>Ich hab <span class="highlight">Glaseffekte wie beim iPhone</span> eingebaut. Mein Kollege Cedric meinte, ich soll die Links nicht direkt auf die Hauptseite klatschen. Also hab ich alles strukturiert, eine Unterseite für den Fortschritt gemacht und die Farben auf ein warmes Gelb optimiert. Sogar Tic-Tac-Toe und Google Translate hab ich getestet, aber wieder gelöscht – es passte einfach nicht zum sauberen Look.</p>
-            </div>
+        <!-- SCHRITT 4: FEINSCHLIFF & EFFEKTE -->
+        <div class="story-card">
+            <h2>Feinschliff & Effekte</h2>
+            <p>Zum Schluss kamen die Details. Ich habe <span class="highlight">Glaseffekte</span> über die Texte gelegt, damit es modern aussieht. Die Übergänge habe ich so angepasst, dass sie sanft ineinander fließen. Statt einer dunklen Nacht-Optik wollte ich diesen warmen Glanz beibehalten, der perfekt zu meinem Spiel und dem gewählten Foto passt.</p>
         </div>
 
-        <!-- SCHRITT 5 -->
-        <div class="milestone">
-            <div class="glass-box">
-                <h2>Finales Testing</h2>
-                <p>Frau Bieri fand es spannend, aber die Animationen waren erst zu schnell. Ich hab sie langsamer gemacht, alles für <span class="highlight">Handys optimiert</span> und am Ende stand die Seite. Nach all dem Hin und Her bin ich extrem stolz, dass ich diesmal konzentriert geblieben bin und es durchgezogen habe.</p>
-            </div>
+        <div class="story-card" style="text-align: center; border: 2px solid #f1e05a;">
+            <h2>Das Resultat</h2>
+            <p>Am Ende stand eine Seite, die genau das Gefühl vermittelt, das ich mir am Anfang vorgestellt hatte. Von der ersten Skizze bis zum fertigen Code auf GitHub war es ein langer Weg, aber der Aufwand hat sich gelohnt.</p>
         </div>
-
     </div>
 
     <script>
@@ -129,6 +118,7 @@
             setTimeout(() => {
                 document.getElementById('main-content').classList.add('show-content');
                 document.body.style.overflow = 'auto';
+                window.scrollTo(0,0);
             }, 600);
         });
     </script>
