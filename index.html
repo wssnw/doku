@@ -62,6 +62,7 @@
             padding: 10px 20px; background: rgba(255,255,255,0.1);
             color: #fff; border: 1px solid #fdbb2d; border-radius: 10px;
             cursor: pointer; backdrop-filter: blur(10px); z-index: 500;
+            display: none;
         }
 
         @keyframes float {
@@ -69,11 +70,10 @@
             50% { transform: translateY(-15px); }
         }
 
-        /* KLASSEN FÜR JS */
+        /* KLASSEN FÜR STATUS */
         .hidden-intro { transform: translateY(-100%); opacity: 0; pointer-events: none; }
         .show-content { display: block !important; opacity: 1 !important; }
 
-        /* DANKESAGUNG STYLE */
         .thanks-card {
             border: 2px solid #fdbb2d !important;
             background: linear-gradient(145deg, #1e2a3a, #161b22);
@@ -84,10 +84,10 @@
 
     <div id="intro-screen">
         <h1>Dokumentation</h1>
-        <button class="btn-main" onclick="openDoku()">Story ansehen</button>
+        <button class="btn-main" id="start-trigger">Story ansehen</button>
     </div>
 
-    <button id="back-btn" style="display: none;" onclick="closeDoku()">← Zurück</button>
+    <button id="back-btn">← Zurück</button>
 
     <div id="main-content">
         <h1 style="text-align: center; color: #fdbb2d; font-size: 2.5rem; margin-bottom: 50px;">Mein Herstellungsprozess</h1>
@@ -131,4 +131,29 @@
             <h2>Dankesagung</h2>
             <p>Ganz am Ende möchte ich mich noch bei ein paar Leuten bedanken, ohne die das Projekt nicht so gut geworden wäre.</p>
             <p>Ein grosses Danke geht an <span class="highlight">Frau Bieri</span> für ihre Hilfe und an <span class="highlight">Herrn Heer</span>, der mir überhaupt erst erlaubt hat, diese Website zu bauen und mir die Chance gegeben hat.</p>
-            <p>Ebenfalls danke ich meinen Kollegen <span class="highlight">Tom, Serge und Cedric</span> für ihr ehrliches Feedback (auch wenn es manchmal hart war). Es gab sicher noch andere, die mir geholfen haben, aber an alle kann ich mich gerade nicht mehr genau erinnern –
+            <p>Ebenfalls danke ich meinen Kollegen <span class="highlight">Tom, Serge und Cedric</span> für ihr ehrliches Feedback (auch wenn es manchmal hart war). Es gab sicher noch andere, die mir geholfen haben, aber an alle kann ich mich gerade nicht mehr genau erinnern – danke trotzdem an alle!</p>
+        </div>
+    </div>
+
+    <script>
+        // Start Story
+        document.getElementById('start-trigger').onclick = function() {
+            document.getElementById('intro-screen').classList.add('hidden-intro');
+            document.getElementById('back-btn').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('main-content').classList.add('show-content');
+                document.body.style.overflow = 'auto';
+            }, 600);
+        };
+
+        // Zurück zum Intro
+        document.getElementById('back-btn').onclick = function() {
+            document.getElementById('main-content').classList.remove('show-content');
+            document.getElementById('intro-screen').classList.remove('hidden-intro');
+            document.getElementById('back-btn').style.display = 'none';
+            document.body.style.overflow = 'hidden';
+            window.scrollTo(0, 0);
+        };
+    </script>
+</body>
+</html>
