@@ -56,7 +56,7 @@
 
         .highlight { color: #fdbb2d; font-weight: bold; }
 
-        /* BACK BUTTON UNTEN */
+        /* BACK BUTTON */
         #back-btn {
             position: fixed; bottom: 20px; right: 20px;
             padding: 10px 20px; background: rgba(255,255,255,0.1);
@@ -72,6 +72,12 @@
         /* KLASSEN FÜR JS */
         .hidden-intro { transform: translateY(-100%); opacity: 0; pointer-events: none; }
         .show-content { display: block !important; opacity: 1 !important; }
+
+        /* DANKESAGUNG STYLE */
+        .thanks-card {
+            border: 2px solid #fdbb2d !important;
+            background: linear-gradient(145deg, #1e2a3a, #161b22);
+        }
     </style>
 </head>
 <body>
@@ -115,31 +121,14 @@
         <div class="card">
             <h2>4. Feinschliff und Abschluss</h2>
             <p>Zum Schluss kam der schwierigste Teil: Der Feinschliff. Ich habe Glaseffekte hinzugefügt, damit alles modern aussieht, so wie man es von neuen Apps kennt. Ausserdem musste ich alles für Handys optimieren, damit die Bilder nicht abgeschnitten werden. Frau Bieri hat mir am Ende noch geholfen, die Animationen noch ein bisschen ruhiger zu machen, damit man sich besser konzentrieren kann.</p>
-            <p>Ich bin jetzt mega froh mit dem Ergebnis. Ich musste zwar viele Dinge doppelt machen und Logos löschen, die nicht gut aussah, aber am Ende hat es sich gelohnt.</p>
             <div class="img-box">
                 <img src="Bad.png" alt="Endergebnis 1">
                 <img src="IMG_4358.jpg" alt="Endergebnis 2">
             </div>
         </div>
-    </div>
 
-    <script>
-        function openDoku() {
-            document.getElementById('intro-screen').classList.add('hidden-intro');
-            document.getElementById('back-btn').style.display = 'block';
-            setTimeout(() => {
-                document.getElementById('main-content').classList.add('show-content');
-                document.body.style.overflow = 'auto';
-            }, 600);
-        }
-
-        function closeDoku() {
-            document.getElementById('main-content').classList.remove('show-content');
-            document.getElementById('intro-screen').classList.remove('hidden-intro');
-            document.getElementById('back-btn').style.display = 'none';
-            document.body.style.overflow = 'hidden';
-            window.scrollTo(0, 0);
-        }
-    </script>
-</body>
-</html>
+        <div class="card thanks-card">
+            <h2>Dankesagung</h2>
+            <p>Ganz am Ende möchte ich mich noch bei ein paar Leuten bedanken, ohne die das Projekt nicht so gut geworden wäre.</p>
+            <p>Ein grosses Danke geht an <span class="highlight">Frau Bieri</span> für ihre Hilfe und an <span class="highlight">Herrn Heer</span>, der mir überhaupt erst erlaubt hat, diese Website zu bauen und mir die Chance gegeben hat.</p>
+            <p>Ebenfalls danke ich meinen Kollegen <span class="highlight">Tom, Serge und Cedric</span> für ihr ehrliches Feedback (auch wenn es manchmal hart war). Es gab sicher noch andere, die mir geholfen haben, aber an alle kann ich mich gerade nicht mehr genau erinnern –
