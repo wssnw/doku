@@ -3,82 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Herstellungsprozess | Foggy Fights</title>
+    <title>Doku | Foggy Fights</title>
     <style>
         * { box-sizing: border-box; }
         body, html {
             margin: 0; padding: 0; height: 100%; width: 100%;
-            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
-            background-attachment: fixed;
-            color: #fff;
-            font-family: 'Segoe UI', sans-serif;
-            overflow-x: hidden;
+            background: #0d1117; color: #eeeeee;
+            font-family: 'Segoe UI', Arial, sans-serif; overflow-x: hidden;
         }
 
-        /* INTRO SCREEN */
+        /* STARTSEITE (INTRO) */
         #intro-screen {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('IMG_4340.jpeg') no-repeat center center;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('IMG_4340.jpeg') no-repeat center center;
             background-size: cover; display: flex; flex-direction: column;
             justify-content: center; align-items: center; z-index: 1000;
-            transition: 0.8s cubic-bezier(0.85, 0, 0.15, 1);
+            transition: transform 0.8s ease-in-out, opacity 0.5s;
         }
 
         #intro-screen h1 {
-            font-family: 'Brush Script MT', 'cursive';
-            font-size: clamp(3rem, 12vw, 6rem);
-            color: #fff;
-            text-shadow: 0 0 20px #fdbb2d;
-            animation: floatGlow 3s ease-in-out infinite;
+            font-family: 'Brush Script MT', cursive; font-size: clamp(3rem, 10vw, 5.5rem);
+            color: #fff; text-shadow: 0 0 20px #fdbb2d; margin-bottom: 30px;
+            animation: float 3s ease-in-out infinite;
         }
 
-        #enter-btn {
-            padding: 15px 40px; background: rgba(255, 255, 255, 0.2);
-            color: #fff; border: 2px solid #fff; border-radius: 50px;
-            cursor: pointer; font-weight: bold; text-transform: uppercase;
-            backdrop-filter: blur(10px); transition: 0.3s;
+        .btn-main {
+            padding: 15px 40px; background: #fdbb2d; color: #000;
+            border: none; border-radius: 50px; cursor: pointer;
+            font-weight: bold; text-transform: uppercase; font-size: 1.1rem;
+            transition: 0.3s; box-shadow: 0 0 15px rgba(253, 187, 45, 0.4);
         }
 
-        #enter-btn:hover { background: #fdbb2d; color: #000; border-color: #fdbb2d; box-shadow: 0 0 30px #fdbb2d; }
+        .btn-main:hover { transform: scale(1.05); background: #fff; }
 
-        /* CONTENT */
+        /* CONTENT BEREICH */
         #main-content {
-            display: none; opacity: 0; max-width: 850px; margin: 0 auto;
-            padding: 60px 20px; transition: 1s;
+            display: none; opacity: 0; max-width: 900px; margin: 0 auto;
+            padding: 40px 20px 100px 20px; transition: 0.8s;
         }
 
-        .story-card {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 30px; border-radius: 20px; margin-bottom: 40px;
-            backdrop-filter: blur(15px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        .card {
+            background: #161b22; border: 1px solid #30363d;
+            padding: 35px; border-radius: 20px; margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        h2 { color: #fdbb2d; font-size: 1.8rem; margin-top: 0; }
-        p { line-height: 1.8; font-size: 1.1rem; }
+        h2 { color: #fdbb2d; font-size: 1.8rem; border-bottom: 1px solid #30363d; padding-bottom: 10px; }
+        p { line-height: 1.8; font-size: 1.15rem; color: #c9d1d9; }
         
-        .img-container {
-            width: 100%;
-            margin: 20px 0;
-            text-align: center;
-        }
-
-        .img-container img {
-            max-width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.2);
-        }
+        .img-box { width: 100%; margin: 25px 0; text-align: center; }
+        .img-box img { max-width: 100%; border-radius: 12px; border: 1px solid #444; }
 
         .highlight { color: #fdbb2d; font-weight: bold; }
 
-        @keyframes floatGlow {
-            0%, 100% { transform: translateY(0) rotate(-1deg); }
-            50% { transform: translateY(-15px) rotate(1deg); }
+        /* BACK BUTTON UNTEN */
+        #back-btn {
+            position: fixed; bottom: 20px; right: 20px;
+            padding: 10px 20px; background: rgba(255,255,255,0.1);
+            color: #fff; border: 1px solid #fdbb2d; border-radius: 10px;
+            cursor: pointer; backdrop-filter: blur(10px); z-index: 500;
         }
 
-        .hidden-intro { transform: translateY(-100%); opacity: 0; }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* KLASSEN FÜR JS */
+        .hidden-intro { transform: translateY(-100%); opacity: 0; pointer-events: none; }
         .show-content { display: block !important; opacity: 1 !important; }
     </style>
 </head>
@@ -86,62 +78,68 @@
 
     <div id="intro-screen">
         <h1>Dokumentation</h1>
-        <button id="enter-btn">Story starten</button>
+        <button class="btn-main" onclick="openDoku()">Story ansehen</button>
     </div>
 
+    <button id="back-btn" style="display: none;" onclick="closeDoku()">← Zurück</button>
+
     <div id="main-content">
-        <h1 style="text-align: center; font-size: 2.5rem; margin-bottom: 50px;">Mein Herstellungsprozess</h1>
+        <h1 style="text-align: center; color: #fdbb2d; font-size: 2.5rem; margin-bottom: 50px;">Mein Herstellungsprozess</h1>
 
-        <!-- LOGOS UND IDEEN -->
-        <div class="story-card">
-            <h2>Logos und Ideen</h2>
-            <p>Zuerst habe ich mir die Farben überlegt und mich für <span class="highlight">Golden Hour Farben</span> entschieden. Danach kam mir die Idee, dass eine geschwungene Schreibschrift (Cursive) für das Logo viel besser aussehen würde. Hier ist der erste Logo-Entwurf:</p>
-            <div class="img-container">
-                <img src="hey.png" alt="Logo Konzept">
+        <div class="card">
+            <h2>1. Ideen und das Logo-Problem</h2>
+            <p>Am Anfang hatte ich erst mal nur eine grobe Idee. Ich wollte, dass meine Website genau den gleichen Vibe hat wie mein Spiel. Ich habe mich für <span class="highlight">Golden Hour Farben</span> entschieden, weil das warm und modern aussieht. Aber dann kam das grosse Problem: Das Logo.</p>
+            <p>Ich habe erst ganz normale Schriften ausprobiert, aber das sah einfach langweilig aus. Es passte überhaupt nicht zum Rest der Seite. Also habe ich angefangen, mit einer geschwungenen Schreibschrift (Cursive) zu arbeiten. Ich musste das Logo mehrmals komplett neu machen und die Farben anpassen, bis es endlich gut aussah. Meine Kollegen fanden die Idee am Ende zum Glück auch viel besser als den ersten Versuch.</p>
+            <div class="img-box">
+                <img src="hey.png" alt="Logo Entwurf">
             </div>
         </div>
 
-        <!-- SCRIPTING -->
-        <div class="story-card">
-            <h2>Scripting & Aufbau</h2>
-            <p>Danach bin ich auf GitHub gegangen und habe mit dem Scripting angefangen. Es war am Anfang mühsam, die Struktur richtig hinzubekommen, damit alles flüssig läuft:</p>
-            <div class="img-container">
-                <img src="hey1.png" alt="Scripting Phase">
+        <div class="card">
+            <h2>2. Scripting auf GitHub</h2>
+            <p>Nach den ersten Ideen bin ich auf GitHub gegangen und habe mit dem richtigen Scripting angefangen. Das war am Anfang echt schwierig, weil ich zwar das Logo geschafft hatte, aber die Website immer noch total leer aussah. Da war einfach kein Leben drin. Ich musste im Code viel rumprobieren, um die Abstände und das Layout so hinzubekommen, dass die Seite professionell wirkt und nicht wie ein leeres Blatt Papier.</p>
+            <div class="img-box">
+                <img src="hey1.png" alt="Code Arbeit">
             </div>
         </div>
 
-        <!-- ANIMATIONEN UND SUNRAYS -->
-        <div class="story-card">
-            <h2>Animationen und Sunrays</h2>
-            <p>Die ersten Animationen waren zu schnell. Erst mit der Idee der <span class="highlight">Sunrays</span> und der Anpassung der Bewegungen wurde das Design stimmig:</p>
-            <div class="img-container">
-                <img src="Move.jpg" alt="Animationen und Sunrays">
+        <div class="card">
+            <h2>3. Animationen und Sunrays</h2>
+            <p>Als das Logo fertig war, habe ich die ersten Animationen programmiert. Ich habe es meinen Kollegen gezeigt, aber die meinten sofort: <span class="highlight">"Das ist viel zu schnell und hektisch!"</span>. Es sah nicht gut aus und man konnte kaum etwas lesen. Ich musste also noch mal von vorne anfangen.</p>
+            <p>Dann hatte ich die Idee mit den <span class="highlight">Sunrays</span>. Ich wollte Sonnenstrahlen einbauen, die sich ganz langsam bewegen. Ich habe die Geschwindigkeit sicher 50-mal im Code geändert, bis es perfekt war. Zusammen mit dem Hintergrundbild sah die Website dann endlich voll und lebendig aus. Es war nicht mehr nur eine leere Seite, sondern ein echtes Projekt.</p>
+            <div class="img-box">
+                <img src="Move.jpg" alt="Animationen">
             </div>
         </div>
 
-        <!-- RESULTAT -->
-        <div class="story-card">
-            <h2>Das Resultat</h2>
-            <p>Nach viel Arbeit und Korrekturen ist die finale Version fertig. Hier ist ein Einblick in das Endresultat:</p>
-            <div class="img-container">
-                <img src="Bad.png" alt="Finales Design 1" style="margin-bottom: 15px;">
-                <img src="IMG_4358.jpg" alt="Finales Design 2">
+        <div class="card">
+            <h2>4. Feinschliff und Abschluss</h2>
+            <p>Zum Schluss kam der schwierigste Teil: Der Feinschliff. Ich habe Glaseffekte hinzugefügt, damit alles modern aussieht, so wie man es von neuen Apps kennt. Ausserdem musste ich alles für Handys optimieren, damit die Bilder nicht abgeschnitten werden. Frau Bieri hat mir am Ende noch geholfen, die Animationen noch ein bisschen ruhiger zu machen, damit man sich besser konzentrieren kann.</p>
+            <p>Ich bin jetzt mega froh mit dem Ergebnis. Ich musste zwar viele Dinge doppelt machen und Logos löschen, die nicht gut aussah, aber am Ende hat es sich gelohnt.</p>
+            <div class="img-box">
+                <img src="Bad.png" alt="Endergebnis 1">
+                <img src="IMG_4358.jpg" alt="Endergebnis 2">
             </div>
-        </div>
-
-        <div style="text-align: center; padding-bottom: 40px;">
-            <p>© 2026 | Projekt Foggy Fights</p>
         </div>
     </div>
 
     <script>
-        document.getElementById('enter-btn').addEventListener('click', function() {
+        function openDoku() {
             document.getElementById('intro-screen').classList.add('hidden-intro');
+            document.getElementById('back-btn').style.display = 'block';
             setTimeout(() => {
                 document.getElementById('main-content').classList.add('show-content');
                 document.body.style.overflow = 'auto';
             }, 600);
-        });
+        }
+
+        function closeDoku() {
+            document.getElementById('main-content').classList.remove('show-content');
+            document.getElementById('intro-screen').classList.remove('hidden-intro');
+            document.getElementById('back-btn').style.display = 'none';
+            document.body.style.overflow = 'hidden';
+            window.scrollTo(0, 0);
+        }
     </script>
 </body>
 </html>
