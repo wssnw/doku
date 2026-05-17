@@ -88,7 +88,6 @@
         /* FLIEGENDER VOGEL EFFEKT */
         .bird {
             position: fixed;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23fdbb2d"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15.5l-3.5-3.5 1.41-1.41L12 13.67l4.09-4.09L17.5 11 13 15.5z"/></svg>');
             background: #fdbb2d;
             clip-path: polygon(50% 0%, 0% 100%, 50% 70%, 100% 100%);
             width: 30px;
@@ -143,8 +142,8 @@
         </div>
 
         <div class="card">
-            <h2>2. Scripting & GitHub Struggles</h2>
-            <p>Als ich alle Ideen im Kopf hatte, habe ich mit dem Programmieren angefangen. Ich bin auf GitHub gegangen und habe dort mein Projekt gestartet. Am Anfang war das Scripting (Code schreiben) echt schwer für mich. Als ich die Website zum ersten Mal geöffnet habe, sah sie total leer aus. Da war nur mein Logo oben auf der Seite und sonst gar nichts. Ich wusste zuerst nicht, wie ich das ändern kann. Ich musste lernen, wie man den Code richtig schreibt, damit die Texte und Bilder an den richtigen Plätzen sind. Ich habe viele Stunden gebraucht und hatte am Anfang auch viele Fehler im Code, die ich reparieren musste.</p>
+            <h2>2. Scripting & Probleme auf GitHub</h2>
+            <p>Als ich alle Ideen im Kopf hatte, habe ich mit dem Programmieren angefangen. Ich bin auf GitHub gegangen und habe dort mein Projekt gestartet. Am Anfang war das Scripting echt schwer für mich. Als ich die Website zum ersten Mal geöffnet habe, sah sie total leer aus. Da war nur mein Logo oben auf der Seite und sonst gar nichts. Ich wusste zuerst nicht, wie ich das ändern kann. Ich musste lernen, wie man den Code richtig schreibt, damit die Texte und Bilder an den richtigen Plätzen sind. Ich habe viele Stunden gebraucht und hatte am Anfang auch viele Fehler im Code, die ich reparieren musste.</p>
             <div class="img-box">
                 <img src="hey1.png" alt="Code Screenshot">
             </div>
@@ -161,7 +160,7 @@
 
         <div class="card">
             <h2>4. Feinschliff & Mobile Optimierung</h2>
-            <p>Am Ende kam die schwierigste Arbeit für mich. Ich habe <span class="highlight">Glaseffekte</span> eingebaut, damit alles modern aussieht. Das ist so ein Effekt, den man auch von neuen Handys oder Apps kennt. Die Textboxen sehen dann aus wie echtes Glas.</p>
+            <p>Am Ende kam die schwierigste Arbeit für mich. Ich habe <span class="highlight">Glaseffekte</span> eingebaut, damit alles modern aussieht. Das ist so ein efeekt, den man auch von neuen Handys oder Apps kennt. Die Textboxen sehen dann aus wie echtes Glas.</p>
             <p>Danach musste ich die Website noch für Handys optimieren. Auf meinem Computer sah alles perfekt aus. Aber als ich die Seite auf dem Smartphone geöffnet habe, waren die Bilder abgeschnitten und die Texte verschoben. Ich musste extra neuen Code schreiben, damit sich die Website an das Handy anpasst. <span class="highlight">Frau Bieri</span> hat mir am Ende auch noch geholfen. Sie hat mir gesagt, dass ich die Animationen noch ein bisschen langsamer machen soll. So kann man die Texte jetzt viel besser lesen und alles sieht professionell aus.</p>
             <div class="img-box">
                 <img src="Bad.png" alt="Handy Ansicht">
@@ -187,7 +186,6 @@
             intro.classList.add('hidden-intro');
             backBtn.style.display = 'block';
             
-            // Vogel aktivieren und Animation starten
             bird.style.display = 'block';
             bird.style.animation = 'flyAway 12s linear infinite';
 
@@ -202,7 +200,6 @@
             intro.classList.remove('hidden-intro');
             backBtn.style.display = 'none';
             
-            // Vogel ausschalten
             bird.style.display = 'none';
             bird.style.animation = 'none';
 
