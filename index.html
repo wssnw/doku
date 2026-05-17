@@ -7,7 +7,6 @@
     <style>
         * { box-sizing: border-box; }
         
-        /* Sexy Background Animation */
         @keyframes gradientBG {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -53,6 +52,7 @@
         #main-content {
             display: none; opacity: 0; max-width: 950px; margin: 0 auto;
             padding: 60px 20px 150px 20px; transition: 1s;
+            position: relative;
         }
 
         .card {
@@ -60,7 +60,9 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 40px; border-radius: 25px; margin-bottom: 50px;
             box-shadow: 0 20px 50px rgba(0,0,0,0.6);
-            backdrop-filter: blur(15px); /* Sexy Glass Effect */
+            backdrop-filter: blur(15px);
+            position: relative;
+            z-index: 10;
         }
 
         h2 { color: #fdbb2d; font-size: 2.2rem; margin-top: 0; border-bottom: 2px solid #fdbb2d; padding-bottom: 15px; }
@@ -83,6 +85,25 @@
         }
         #back-btn:hover { background: #fdbb2d; color: #000; }
 
+        /* FLIEGENDER VOGEL EFFEKT */
+        .bird {
+            position: fixed;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23fdbb2d"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15.5l-3.5-3.5 1.41-1.41L12 13.67l4.09-4.09L17.5 11 13 15.5z"/></svg>');
+            background: #fdbb2d;
+            clip-path: polygon(50% 0%, 0% 100%, 50% 70%, 100% 100%);
+            width: 30px;
+            height: 25px;
+            z-index: 1;
+            opacity: 0.4;
+            display: none;
+        }
+
+        @keyframes flyAway {
+            0% { top: 110%; left: -10%; transform: scale(0.6) rotate(45deg); }
+            50% { top: 40%; left: 50%; transform: scale(1) rotate(60deg); }
+            100% { top: -10%; left: 110%; transform: scale(0.5) rotate(45deg); }
+        }
+
         @keyframes float {
             0%, 100% { transform: translateY(0) rotate(-1deg); }
             50% { transform: translateY(-20px) rotate(1deg); }
@@ -99,6 +120,8 @@
 </head>
 <body>
 
+    <div id="flying-bird" class="bird"></div>
+
     <div id="intro-screen">
         <h1>Foggy Fights</h1>
         <button class="btn-main" id="start-trigger">Doku öffnen</button>
@@ -111,9 +134,9 @@
 
         <div class="card">
             <h2>1. Die Entstehung der Idee & Logo-Chaos</h2>
-            <p>Alles fing damit an, dass ich einen Style wollte, der hängen bleibt. Mein Spiel hat diesen speziellen Vibe, und genau den wollte ich auf die Website bringen. Ich habe mich für das <span class="highlight">Golden Hour Thema</span> entschieden, weil diese Mischung aus warmem Gelb und dunklem Blau einfach edel aussieht.</p>
-            <h3>Das Logo-Problem</h3>
-            <p>Ich dachte erst, das Logo wäre schnell gemacht. Aber ich habe mich total geirrt. Zuerst sah es extrem billig aus, fast wie eine langweilige Word-Datei. Ich musste die Logos mehrmals komplett löschen und neu designen. Ich habe verschiedene Schriftarten getestet, bis ich bei der <span class="highlight">Cursive Writing</span> gelandet bin. Diese geschwungene Schrift gibt der Seite erst diesen persönlichen Touch. Es war ein langer Prozess aus Löschen, Anpassen und neu Versuchen, bis das Logo endlich zum Hintergrund gepasst hat.</p>
+            <p>Am Anfang habe ich mir überlegt, wie das Design aussehen soll. Ich wollte unbedingt ein schönes Design machen, das den Leuten gefällt. Mein Spiel hat coole Farben, und genau diesen Style wollte ich auch für die Website benutzen. Deshalb habe ich mich für die <span class="highlight">Golden Hour Farben</span> entschieden. Diese Farben sind Gelb und Orange. Das sieht zusammen mit dem dunklen Hintergrund einfach sehr gut aus.</p>
+            <h3>Das Problem mit dem Logo</h3>
+            <p>Ich dachte zuerst, dass das Logo ganz einfach und schnell fertig wird. Aber das war ein grosser Fehler von mir. Am Anfang sah das Logo überhaupt nicht schön aus. Es war langweilig und hat nicht zum Rest der Website gepasst. Deshalb musste ich die Logos mehrmals komplett löschen und wieder ganz neu machen. Ich habe viele verschiedene Schriften ausprobiert. Am Ende habe ich die <span class="highlight">Cursive Writing</span> (Schreibschrift) genommen. Diese geschwungene Schrift sieht viel besser aus. Es war sehr viel Arbeit mit dem Löschen und Ändern, aber am Ende hat das Logo gut zum Hintergrund gepasst.</p>
             <div class="img-box">
                 <img src="hey.png" alt="Logo Design">
             </div>
@@ -121,8 +144,7 @@
 
         <div class="card">
             <h2>2. Scripting & GitHub Struggles</h2>
-            <p>Als das Design im Kopf fertig war, kam der harte Teil: GitHub. Ich habe das Repository erstellt und angefangen zu scripten. Die erste Version war deprimierend. Die Website war fast komplett leer, nur das Logo klebte oben links. Ich musste lernen, wie man mit <span class="highlight">Containern und Flexboxen</span> arbeitet, damit die Elemente nicht einfach irgendwo rumfliegen.</p>
-            <p>Ich habe Stunden damit verbracht, den Code so zu schreiben, dass die Seite "voll" wirkt, ohne überladen zu sein. Jede Zeile Code war ein kleiner Kampf gegen Bugs und Fehlermeldungen.</p>
+            <p>Als ich alle Ideen im Kopf hatte, habe ich mit dem Programmieren angefangen. Ich bin auf GitHub gegangen und habe dort mein Projekt gestartet. Am Anfang war das Scripting (Code schreiben) echt schwer für mich. Als ich die Website zum ersten Mal geöffnet habe, sah sie total leer aus. Da war nur mein Logo oben auf der Seite und sonst gar nichts. Ich wusste zuerst nicht, wie ich das ändern kann. Ich musste lernen, wie man den Code richtig schreibt, damit die Texte und Bilder an den richtigen Plätzen sind. Ich habe viele Stunden gebraucht und hatte am Anfang auch viele Fehler im Code, die ich reparieren musste.</p>
             <div class="img-box">
                 <img src="hey1.png" alt="Code Screenshot">
             </div>
@@ -130,8 +152,8 @@
 
         <div class="card">
             <h2>3. Animationen & Sunrays-Vibe</h2>
-            <p>Ein grosses Ziel war es, dass die Website "lebt". Statische Seiten sind langweilig. Also habe ich Animationen eingebaut. Meine Kollegen Tom und Cedric haben mir aber direkt gesagt: <span class="highlight">"Das sieht aus wie ein epileptischer Anfall, mach das langsamer!"</span>. Sie hatten recht – die erste Version war viel zu hektisch.</p>
-            <p>Dann kam der Gamechanger: <span class="highlight">Sunrays</span>. Ich wollte, dass es so aussieht, als würde weiches Licht über den Bildschirm wandern. Ich habe die CSS-Animationen so lange getweakt, bis die Bewegungen ganz sanft waren. Das hat der Seite Tiefe gegeben und das Problem mit der "leeren Website" endgültig gelöst.</p>
+            <p>Mir war wichtig, dass sich auf der Website auch etwas bewegt. Wenn alles nur stillsteht, ist es langweilig für die Besucher. Also habe ich ein paar Animationen in den Code geschrieben. Ich habe das meinen Kollegen Tom und Cedric gezeigt. Sie haben mir sofort gesagt: <span class="highlight">"Das ist viel zu schnell! Die Leute bekommen ja Kopfschmerzen."</span>. Sie hatten recht, die Bewegungen waren am Anfang viel zu hektisch und unruhig.</p>
+            <p>Dann hatte ich eine neue Idee: Ich wollte <span class="highlight">Sunrays</span> (Sonnenstrahlen) einbauen. Diese Sonnenstrahlen sollten sich ganz langsam im Hintergrund bewegen. Ich habe den Code sicher 50-mal geändert und angepasst, bis die Bewegung ganz sanft und ruhig war. Das sah super aus und das Problem mit der leeren Website war endlich gelöst.</p>
             <div class="img-box">
                 <img src="Move.jpg" alt="Vibe Animation">
             </div>
@@ -139,8 +161,8 @@
 
         <div class="card">
             <h2>4. Feinschliff & Mobile Optimierung</h2>
-            <p>Zum Schluss kam der schwierigste Teil: Der Feinschliff. Ich habe <span class="highlight">Glaseffekte</span> hinzugefügt, damit alles modern aussieht, so wie man es von neuen iPhone-Apps kennt. Dieser "Glassmorphism" lässt die Karten über dem Hintergrund schweben.</p>
-            <p>Ausserdem musste ich alles für Handys optimieren. Auf dem PC sah alles perfekt aus, aber auf dem Handy waren die Bilder erst abgeschnitten oder die Texte zu gross. Ich musste für verschiedene Bildschirmgrössen extra Code schreiben (Media Queries). <span class="highlight">Frau Bieri</span> hat mir am Ende noch geholfen, die Animationen noch ein bisschen ruhiger zu machen, damit man sich besser konzentrieren kann und die Seite professionell wirkt.</p>
+            <p>Am Ende kam die schwierigste Arbeit für mich. Ich habe <span class="highlight">Glaseffekte</span> eingebaut, damit alles modern aussieht. Das ist so ein Effekt, den man auch von neuen Handys oder Apps kennt. Die Textboxen sehen dann aus wie echtes Glas.</p>
+            <p>Danach musste ich die Website noch für Handys optimieren. Auf meinem Computer sah alles perfekt aus. Aber als ich die Seite auf dem Smartphone geöffnet habe, waren die Bilder abgeschnitten und die Texte verschoben. Ich musste extra neuen Code schreiben, damit sich die Website an das Handy anpasst. <span class="highlight">Frau Bieri</span> hat mir am Ende auch noch geholfen. Sie hat mir gesagt, dass ich die Animationen noch ein bisschen langsamer machen soll. So kann man die Texte jetzt viel besser lesen und alles sieht professionell aus.</p>
             <div class="img-box">
                 <img src="Bad.png" alt="Handy Ansicht">
                 <img src="IMG_4358.jpg" alt="Finale Seite">
@@ -149,8 +171,8 @@
 
         <div class="card thanks-card">
             <h2>Dankesagung</h2>
-            <p>Ich möchte mich bei den Leuten bedanken, die mich unterstützt haben. Ein grosses Danke geht an <span class="highlight">Frau Bieri</span> für ihre Zeit und Geduld und an <span class="highlight">Herrn Heer</span>, der mir überhaupt erst erlaubt hat, dieses Projekt zu starten und die Website zu bauen.</p>
-            <p>Danke auch an <span class="highlight">Tom, Serge und Cedric</span> für das Feedback und die Kritik, die mich weitergebracht haben. Und danke an alle anderen, die mir zwischendurch Tipps gegeben haben – auch wenn ich gerade nicht mehr alle Namen im Kopf habe!</p>
+            <p>Am Schluss möchte ich mich noch bei den Personen bedanken, die mir geholfen haben. Ein grosses Danke geht an <span class="highlight">Frau Bieri</span> für ihre Hilfe und Unterstützung. Auch ein grosses Danke an <span class="highlight">Herrn Heer</span>. Er hat mir am Anfang erlaubt, dieses Projekt zu machen und die Website überhaupt zu bauen.</p>
+            <p>Danke auch an meine Kollegen <span class="highlight">Tom, Serge und Cedric</span> für ihre Tipps und die Kritik. Durch ihre Hilfe wurde die Website viel besser. Und natürlich danke ich auch allen anderen, die mir geholfen haben, auch wenn ich mich jetzt gerade nicht mehr an alle Namen erinnern kann!</p>
         </div>
     </div>
 
@@ -159,10 +181,16 @@
         const backBtn = document.getElementById('back-btn');
         const intro = document.getElementById('intro-screen');
         const content = document.getElementById('main-content');
+        const bird = document.getElementById('flying-bird');
 
         trigger.onclick = () => {
             intro.classList.add('hidden-intro');
             backBtn.style.display = 'block';
+            
+            // Vogel aktivieren und Animation starten
+            bird.style.display = 'block';
+            bird.style.animation = 'flyAway 12s linear infinite';
+
             setTimeout(() => {
                 content.classList.add('show-content');
                 document.body.style.overflow = 'auto';
@@ -173,6 +201,11 @@
             content.classList.remove('show-content');
             intro.classList.remove('hidden-intro');
             backBtn.style.display = 'none';
+            
+            // Vogel ausschalten
+            bird.style.display = 'none';
+            bird.style.animation = 'none';
+
             document.body.style.overflow = 'hidden';
             window.scrollTo({ top: 0, behavior: 'smooth' });
         };
